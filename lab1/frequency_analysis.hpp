@@ -1,9 +1,14 @@
-#include <print>
+#ifndef H_FREQUENCY_ANALISIS_H
+#define H_FREQUENCY_ANALISIS_H
+
 #include <vector>
 #include <string>
-#include <fstream>
 #include <unordered_map>
 #include <algorithm>
+#include <iostream>
+
+namespace fkl
+{
 
 std::vector<std::pair<std::string, int>> frequency_analysis(std::istream& file)
 {
@@ -32,27 +37,6 @@ std::vector<std::pair<std::string, int>> frequency_analysis(std::istream& file)
     return vec;
 }
 
-int main(int argc, char* argv[])
-{
-    if(argc < 2)
-    {
-        std::println("Erorr paramtr");
-        return 1;
-    }
+} // namespace fkl
 
-    std::ifstream file(argv[1]);
-    if(!file.is_open())
-    {
-        std::println("Erorr open file");
-        return 1;
-    }
-
-    std::vector<std::pair<std::string, int>> word_count = frequency_analysis(file);
-
-    for(const auto &[key, value] : word_count)
-    {
-        std::println("{}: {}", key, value);
-    }
-
-    return 0;
-}
+#endif // H_FREQUENCY_ANALISIS_H
