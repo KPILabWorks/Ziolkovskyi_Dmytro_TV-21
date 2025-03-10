@@ -16,4 +16,4 @@
 `mkdir build  
 cd build  
 cmake .. -DCMAKE_CXX_COMPILER=g++-14  
-make  
+make`
