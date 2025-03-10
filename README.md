@@ -13,7 +13,7 @@
 `lab2` — лабараторна робота №2, містить два генератори csv файлів та програму об'єднання цих фійлів у третій
 
 Команди для компіляці:
-`mkdir build\n`
-`cd build\n`
-`cmake .. -DCMAKE_CXX_COMPILER=g++-14\n`
-`make\n`
+`mkdir build`
+`cd build`
+`cmake .. -DCMAKE_CXX_COMPILER=g++-14`
+`make`
