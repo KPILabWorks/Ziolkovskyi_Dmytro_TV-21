@@ -16,3 +16,7 @@
 `cd build`  
 `cmake .. -DCMAKE_CXX_COMPILER=g++-14`  
 `make`
+
+## Лабараторна робота
+Команда для компіляці:  
+`g++ server.cpp -std=c++20 -o server`

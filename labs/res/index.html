@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+    <script>
+        let socket;
+
+        function connect()
+        {
+            socket = new WebSocket(`ws://${window.location.hostname}:21521`);
+
+            socket.onopen = function()
+            {
+                console.log("Connected to WebSocket server");
+                document.getElementById("status").innerText = "Connected";
+            };
+
+            socket.onmessage = function(event)
+            {
+                const message = event.data;
+                console.log("Received:", message);
+                document.getElementById("messages").innerHTML = `<p>${message}</p>`;
+            };
+
+            socket.onerror = function(error)
+            {
+                console.error("WebSocket Error:", error);
+            };
+
+            socket.onclose = function()
+            {
+                console.log("Disconnected from WebSocket server");
+                document.getElementById("status").innerText = "Disconnected";
+            };
+        }
+
+        function sendMessage()
+        {
+            const message = document.getElementById("inputMessage").value;
+            if(socket && socket.readyState === WebSocket.OPEN)
+            {
+                socket.send(message);
+                console.log("Sent:", message);
+            }
+            else
+            {
+                console.log("WebSocket is not open");
+            }
+        }
+
+        function disconnect()
+        {
+            if(socket)
+            {
+                socket.close();
+            }
+        }
+
+        connect();
+    </script>
+</head>
+<body>
+    <h1>WebSocket Client</h1>
+
+    <p>Status: <span id="status">Disconnected</span></p>
+
+
+    <div>
+        <input type="text" id="inputMessage" placeholder="Type a message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div id="messages">
+    </div>
+</body>
+</html>
